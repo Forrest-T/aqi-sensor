@@ -6,11 +6,11 @@
 #include <util/delay.h>
 
 int main() {
-    DDRB = 0b10000;
+    DDRD = 0b10;
     while (true) {
-        PORTB |= 0b10000;
+        PORTD |= 0b10;
         _delay_ms(BLINK_DELAY_MS);
-        PORTB &= ~0b10000;
+        PORTD &= ~0b10;
         _delay_ms(BLINK_DELAY_MS);
     }
 }
