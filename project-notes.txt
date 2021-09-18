@@ -1,0 +1,11 @@
+Parts
+=====
+Arduino micro (ATMEGA32u4 microcontroller)
+PMS5003 particle concentration sensor
+16x2 I2C LCD display
+
+Dependencies
+============
+avr-gcc - compiler support for AVR microcontrollers
+avr-libc - C runtime library
+avrdude - tool for flashing arduino EEPROM
