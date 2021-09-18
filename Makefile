@@ -21,7 +21,7 @@ OBJECTS = main.o
 all: $(BINARY).hex
 
 $(BINARY).hex: $(BINARY)
-	avr-objcopy -O ihex -R .eeprom $< $@
+	avr-objcopy -O ihex $< $@
 
 $(BINARY): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OBJECTS) -o $@
