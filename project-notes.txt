@@ -8,4 +8,5 @@ Dependencies
 ============
 avr-gcc - compiler support for AVR microcontrollers
 avr-libc - C runtime library
+avr-binutils - tools for maniuplating AVR binaries
 avrdude - tool for flashing arduino EEPROM
