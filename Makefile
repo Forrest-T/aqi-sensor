@@ -15,6 +15,7 @@ AVR_PORT ?= /dev/ttyACM1
 # Files
 BINARY = aqi
 OBJECTS = main.o
+HEADERS = PortHelper.h
 
 .PHONY: all clean upload
 
@@ -27,7 +28,7 @@ $(BINARY): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(OBJECTS) -o $@
 	@avr-size $@
 
-%.o: %.cpp
+%.o: %.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $< -c -o $@
 
 clean:
