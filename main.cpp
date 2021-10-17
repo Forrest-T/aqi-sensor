@@ -1,16 +1,17 @@
 #include <avr/io.h>
-
 #define F_CPU 16000000
-#define BLINK_DELAY_MS 1000
-
 #include <util/delay.h>
 
+#include <PortHelper.h>
+
+constexpr auto BLINK_DELAY_MS{ 1000 };
+
 int main() {
-    DDRD = 0b10;
+    Pin<D,1>::isOutput();
     while (true) {
-        PORTD |= 0b10;
+        Pin<D,1>::set();
         _delay_ms(BLINK_DELAY_MS);
-        PORTD &= ~0b10;
+        Pin<D,1>::unset();
         _delay_ms(BLINK_DELAY_MS);
     }
 }

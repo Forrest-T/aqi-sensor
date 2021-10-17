@@ -4,7 +4,7 @@ MCU = atmega32u4
 # Compilation
 CXX = avr-g++
 CXXFLAGS = -Wall -Wextra -mmcu=$(MCU) -O3
-INCLUDES = -I/usr/avr/include
+INCLUDES = -I. -I/usr/avr/include
 
 # Getting onto hardware
 AVRDUDE = avrdude
