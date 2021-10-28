@@ -14,14 +14,28 @@ class Pin {
     static constexpr decltype(&DDRD) Direction[3] {
         [B] = &DDRB, [C] = &DDRC, [D] = &DDRD
     };
-    static constexpr decltype(&PORTD) Port[3] {
+    static constexpr decltype(&PORTD) WritePin[3] {
         [B] = &PORTB, [C] = &PORTC, [D] = &PORTD
     };
+    static constexpr decltype(&PIND) ReadPin[3] {
+        [B] = &PINB, [C] = &PINC, [D] = &PIND
+    };
 public:
-    static void set()   { *Port[P] |= ( 1 << Bit ); }
-    static void unset() { *Port[P] &= ~( 1 << Bit ); }
-    static void isOutput() { *Direction[P] |= ( 1 << Bit ); }
-    static void isInput()  { *Direction[P] &= ~( 1 << Bit ); }
+    // Designate pin as input or output
+    static void output() { *Direction[P] |= ( 1 << Bit ); }
+    static void input()  { *Direction[P] &= ~( 1 << Bit ); }
+    // Write pin value
+    static void enable()  { *WritePin[P] |= ( 1 << Bit ); }
+    static void disable() { *WritePin[P] &= ~( 1 << Bit ); }
+    static void set(bool b) {
+        if (b) {
+            enable();
+        } else {
+            disable();
+        }
+    }
+    // Read pin value
+    static bool get() { return *ReadPin[P] & (1 << Bit); }
 };
 
 #endif
