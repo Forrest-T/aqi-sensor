@@ -10,12 +10,12 @@ INCLUDES = -I. -I/usr/avr/include
 AVRDUDE = avrdude
 AVR_DEVICE ?= m32u4
 AVR_PROGRAMMER ?= avr109
-AVR_PORT ?= /dev/ttyACM1
+AVR_PORT ?= /dev/ttyACM0
 
 # Files
 BINARY = aqi
 OBJECTS = main.o
-HEADERS = PortHelper.h
+HEADERS = PortHelper.h I2C.h
 
 .PHONY: all clean upload
 

@@ -3,15 +3,24 @@
 #include <util/delay.h>
 
 #include <PortHelper.h>
-
-constexpr auto BLINK_DELAY_MS{ 1000 };
+#include <I2C.h>
 
 int main() {
-    Pin<D,1>::isOutput();
-    while (true) {
-        Pin<D,1>::set();
-        _delay_ms(BLINK_DELAY_MS);
-        Pin<D,1>::unset();
-        _delay_ms(BLINK_DELAY_MS);
+    _delay_ms(500);
+    I2C::init();
+
+    auto received{ I2C::writeByte<0x27>(0x00) }; // send a test byte
+
+    Pin<D,1>::output();
+    if (received) {
+        while (true) { // blink slowly to indicate success
+            Pin<D,1>::enable(); _delay_ms(1000);
+            Pin<D,1>::disable(); _delay_ms(1000);
+        }
+    } else {
+        while (true) { // blink quickly to indicate failure
+            Pin<D,1>::enable(); _delay_ms(300);
+            Pin<D,1>::disable(); _delay_ms(300);
+        }
     }
 }
